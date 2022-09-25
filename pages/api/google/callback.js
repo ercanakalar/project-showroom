@@ -7,7 +7,7 @@ export default async function (req, res, next) {
   await connect();
   passport.authenticate('google', (err, user, info) => {
     if (err || !user) {
-      return res.redirect('http://localhost:3000/?a=auth_fail');
+      return res.redirect( process.env.NEXT_PUBLIC_URL+'/?a=auth_fail');
     }
 
     // set cookie and send redirect
@@ -15,6 +15,6 @@ export default async function (req, res, next) {
       req,
       res,
     });
-    res.redirect('http://localhost:3000/');
+    res.redirect( process.env.NEXT_PUBLIC_URL);
   })(req, res, next);
 }
