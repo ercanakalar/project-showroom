@@ -73,9 +73,9 @@ export default function AddProjectForm({ props }) {
           rightButtonUrl: '',
         });
         setTags([]);
-        notifySuccess(response.statusText);
+        notifySuccess(response.statusText || 'created');
       } else {
-        notifyError(response.statusText);
+        notifyError(response.statusText || 'error');
       }
     }
   };

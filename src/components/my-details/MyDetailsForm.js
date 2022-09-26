@@ -67,9 +67,9 @@ export default function MyDetailsForm({ props }) {
         body: JSON.stringify(projectValues),
       });
       if (response.status === 201) {
-        notifySuccess(response.statusText);
+        notifySuccess(response.statusText || 'Profile updated!');
       } else {
-        notifyError(response.statusText);
+        notifyError(response.statusText || 'Profile could not updated!');
       }
     }
   };
