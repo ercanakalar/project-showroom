@@ -11,7 +11,7 @@ import connect from '../lib/database';
 export default function IndexPage(props) {
   const { currentProfileStr, currentUserStr, projectsStr } = props;
 
-  if (!currentProfileStr || !currentUserStr || !projectsStr) {
+  if (!currentUserStr) {
     return <div>Please log in</div>;
   }
 
