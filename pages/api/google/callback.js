@@ -10,7 +10,7 @@ export default async function (req, res, next) {
     console.log(user, 'user');
     console.log(info, 'info');
 
-    if (err || !user) {
+    if (err) {
       return res.redirect(process.env.NEXT_PUBLIC_URL + '/?a=auth_fail');
     }
 
