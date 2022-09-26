@@ -6,7 +6,7 @@ export default async function (req, res, next) {
   await connect();
 
   passport.authenticate('google', {
-    scope: ['profile', 'email'],
+    scope: ['profile'],
     session: false,
   })(req, res, next);
 }
