@@ -6,13 +6,9 @@ import '../../../lib/passport';
 export default async function (req, res, next) {
   await connect();
   passport.authenticate('google', (err, user, info) => {
-    console.log(err, 'err');
-    console.log(user, 'user');
-    console.log(info, 'info');
-
-    // if (err || !user) {
-    //   return res.redirect(process.env.NEXT_PUBLIC_URL + '/?a=auth_fail');
-    // }
+    if (err || !user) {
+      return res.redirect(process.env.NEXT_PUBLIC_URL + '/');
+    }
 
     // set cookie and send redirect
     setCookie('token', info.token, {
