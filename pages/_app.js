@@ -54,10 +54,12 @@ function MyApp(props) {
   // Dark Mode Handler
   const handleDarkMode = () => setDarkMode(!darkMode);
 
+  const title = 'Emre MUTLU & ERCAN AKALAR';
+
   return (
     <GeneratedContext.Provider session={session}>
       <Head>
-        <title>Emre MUTLU - SHOWROOM</title>
+        <title>{title} - SHOWROOM</title>
       </Head>
       <CssBaseline />
       <ThemeProvider theme={theme}>

@@ -13,7 +13,7 @@ export default function LoginRegisterButton() {
 
   const logout = () => {
     deleteCookie('token');
-    router.replace('/');
+    router.push('/');
   };
 
   const cookieExists = getCookie('token');
@@ -45,7 +45,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     const cookieExists = getCookie('token', { req, res });
 
-    if (cookieExists) return { redirect: { destination: '/' } };
+    if (cookieExists) return { redirect: { destination: '/ercanakalar' } };
     return { props: {} };
   } catch (err) {
     return { props: {} };
