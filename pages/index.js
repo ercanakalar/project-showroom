@@ -12,7 +12,7 @@ export default function IndexPage(props) {
   const { currentProfileStr, currentUserStr, projectsStr } = props;
 
   if (!currentUserStr) {
-    return <div>Please log in</div>;
+    return <div>Please log in!</div>;
   }
 
   return (
