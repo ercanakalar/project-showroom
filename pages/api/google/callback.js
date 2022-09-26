@@ -15,6 +15,6 @@ export default async function (req, res, next) {
       req,
       res,
     });
-    res.redirect(process.env.NEXT_PUBLIC_URL);
+    res.redirect(process.env.NEXT_PUBLIC_URL + '/');
   })(req, res, next);
 }

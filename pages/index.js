@@ -68,7 +68,6 @@ export async function getServerSideProps({ req, res }) {
   const projects = await Projects.find({ creatorId: verified?.id });
 
   const username = profile?.username;
-  console.log(username, 'username');
 
   if (profile) {
     if (username)
