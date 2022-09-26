@@ -10,9 +10,9 @@ export default async function (req, res, next) {
     console.log(user, 'user');
     console.log(info, 'info');
 
-    if (err) {
-      return res.redirect(process.env.NEXT_PUBLIC_URL + '/?a=auth_fail');
-    }
+    // if (err || !user) {
+    //   return res.redirect(process.env.NEXT_PUBLIC_URL + '/?a=auth_fail');
+    // }
 
     // set cookie and send redirect
     setCookie('token', info.token, {
