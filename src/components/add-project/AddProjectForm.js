@@ -61,7 +61,6 @@ export default function AddProjectForm({ props }) {
         },
         body: JSON.stringify(projectValues),
       });
-      console.log(response, 'response');
 
       if (response.status === 201) {
         reset({

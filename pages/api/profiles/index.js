@@ -80,6 +80,7 @@ export default async function handler(req, res) {
           const profile = await Profiles.create(
             req.body,
           ); /* create a new model in the database */
+
           res.status(201).json({
             success: true,
             data: profile,
