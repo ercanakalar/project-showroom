@@ -37,12 +37,13 @@ export default function AppBarTitle({ currentUserStr, currentProfileStr }) {
   }
   const currentUser = JSON.parse(currentUserStr);
   const currentProfile = JSON.parse(currentProfileStr);
-  const username = currentProfile?.username || '';
-  console.log(username, 'username');
+
+  const currentUsername =
+    currentProfile?.username || currentUser.defaultUserName || '';
 
   return (
     <Typography variant="h6" color="inherit" noWrap className={classes.title}>
-      <LinkNext href={UrlHomepage(`/${username}`)} passHref>
+      <LinkNext href={UrlHomepage(`/${currentUsername}`)} passHref>
         <Link color="inherit">
           {(
             currentProfile?.title ||
@@ -52,7 +53,7 @@ export default function AppBarTitle({ currentUserStr, currentProfileStr }) {
         </Link>
       </LinkNext>{' '}
       |{' '}
-      <LinkNext href="/" passHref>
+      <LinkNext href={UrlHomepage(`/${currentUsername}`)} passHref>
         <Link color="inherit">PROJECT GALLERY</Link>
       </LinkNext>
     </Typography>
