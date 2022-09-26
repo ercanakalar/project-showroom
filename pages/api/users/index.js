@@ -1,7 +1,4 @@
 /** USER */
-import { getSession } from 'next-auth/react';
-import { getCookie } from 'cookies-next';
-
 
 /* DATABASE */
 import Users from '../../../models/Users';
@@ -19,16 +16,13 @@ import {
   USER_LISTED_ERROR,
 } from '../../../lib/api/users/messages';
 import connect from '../../../lib/database';
-
-/** ENVIRONMENT */
-const secret = process.env.JWT_SECRET;
+import jwt from 'jsonwebtoken';
+import { getCookie } from 'cookies-next';
 
 /* MAIN FUNCTION */
 export default async function handler(req, res) {
   const { method, body } = req;
   await connect();
-  const session = await getSession({ req });
-  console.log(session, 'session');
 
   const token = getCookie('token');
 
@@ -41,7 +35,6 @@ export default async function handler(req, res) {
   }
 
   const userId = jwt.decode(token);
-
 
   const createUserBody = {
     ...body,
@@ -90,7 +83,7 @@ export default async function handler(req, res) {
     // Get the user
     case 'GET':
       try {
-        const userItem = await Users.findById({_id: userId });
+        const userItem = await Users.findById({ _id: userId });
 
         if (!userItem) {
           return res.status(400).json({
