@@ -1,6 +1,7 @@
 /** USER */
 import { getSession } from 'next-auth/react';
-import { getToken } from 'next-auth/jwt';
+import { getCookie } from 'cookies-next';
+
 
 /* DATABASE */
 import Users from '../../../models/Users';
@@ -28,12 +29,10 @@ export default async function handler(req, res) {
   await connect();
   const session = await getSession({ req });
   console.log(session, 'session');
-  const token = await getToken({ req, secret });
-  const isModified =
-    token?.accessToken !== session?.accessToken ||
-    token?.email !== session?.user?.email;
 
-  if (isModified) {
+  const token = getCookie('token');
+
+  if (!token) {
     return res.status(401).json({
       success: false,
       message: UNAUTHORIZED,
@@ -41,12 +40,15 @@ export default async function handler(req, res) {
     });
   }
 
+  const userId = jwt.decode(token);
+
+
   const createUserBody = {
     ...body,
   };
 
   const filter = {
-    email: session?.user?.email,
+    userId,
   };
 
   // Only PUT method is allowed
@@ -88,7 +90,7 @@ export default async function handler(req, res) {
     // Get the user
     case 'GET':
       try {
-        const userItem = await Users.find({ email: session?.user?.email });
+        const userItem = await Users.findById({_id: userId });
 
         if (!userItem) {
           return res.status(400).json({

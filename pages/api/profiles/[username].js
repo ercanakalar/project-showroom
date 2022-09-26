@@ -7,9 +7,11 @@ import {
   USER_LISTED,
   USER_LISTED_ERROR,
 } from '../../../lib/api/users/messages';
+import connect from '../../../lib/database';
 
 /* MAIN FUNCTION */
 export default async function handler(req, res) {
+  await connect()
   const {
     query: { username },
     method,
