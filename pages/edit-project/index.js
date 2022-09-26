@@ -46,12 +46,12 @@ export async function getServerSideProps({ req, res }) {
     _id: cardId,
   });
 
-  if (!currentUserProjects)
-    return {
-      redirect: {
-        destination: '/',
-      },
-    };
+  // if (!currentUserProjects)
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //     },
+  //   };
 
   return {
     props: {

@@ -45,21 +45,21 @@ export async function getServerSideProps({ req, res }) {
     await connect();
     // check cookie
     const token = getCookie('token', { req, res });
-    if (!token)
-      return {
-        redirect: {
-          destination: '/',
-        },
-      };
+    // if (!token)
+    //   return {
+    //     redirect: {
+    //       destination: '/',
+    //     },
+    //   };
 
     const verified = await jwt.decode(token);
     const obj = await Users.findOne({ _id: verified.id });
-    if (!obj)
-      return {
-        redirect: {
-          destination: '/',
-        },
-      };
+    // if (!obj)
+    //   return {
+    //     redirect: {
+    //       destination: '/',
+    //     },
+    //   };
     return {
       props: {
         creatorId: verified.id,

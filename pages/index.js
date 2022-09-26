@@ -54,12 +54,12 @@ export async function getServerSideProps({ req, res }) {
   await connect();
 
   const token = getCookie('token', { req, res });
-  if (!token)
-    return {
-      redirect: {
-        destination: '/',
-      },
-    };
+  // if (!token)
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //     },
+  //   };
 
   const verified = jwt.decode(token);
 
@@ -67,12 +67,12 @@ export async function getServerSideProps({ req, res }) {
   const profile = await Profiles.findOne({ creatorId: verified?.id });
   const projects = await Projects.find({ creatorId: verified?.id });
 
-  if (!currentUser)
-    return {
-      redirect: {
-        destination: '/',
-      },
-    };
+  // if (!currentUser)
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //     },
+  //   };
 
   const currentUserStr = currentUser ? JSON.stringify(currentUser) : null;
   const currentProfileStr = profile ? JSON.stringify(profile) : null;
