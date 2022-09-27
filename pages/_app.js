@@ -59,7 +59,7 @@ function MyApp(props) {
   return (
     <GeneratedContext.Provider session={session}>
       <Head>
-        <title>{title} - SHOWROOM</title>
+        <title>PROJECT SHOWROOM - {title}</title>
       </Head>
       <CssBaseline />
       <ThemeProvider theme={theme}>
