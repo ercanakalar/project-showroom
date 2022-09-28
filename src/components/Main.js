@@ -1,5 +1,5 @@
 import HeroContent from './HeroContent';
-import CardGallery from './CardGallery';
+// import CardGallery from './CardGallery';
 
 export default function MainPage({
   currentUserStr,
@@ -9,6 +9,7 @@ export default function MainPage({
   const currentProfile = JSON.parse(currentProfileStr);
   const currentUser = JSON.parse(currentUserStr);
   const currentUserProjects = JSON.parse(projectsStr);
+  console.log(currentUser, 'currentUser MainPage');
 
   return (
     <>
@@ -17,11 +18,12 @@ export default function MainPage({
         currentProfile={currentProfile}
         currentUserProjects={currentUserProjects}
       />
-      <CardGallery
+      {/* <CardGallery
         currentUser={currentUser}
         currentProfile={currentProfile}
         currentUserProjects={currentUserProjects}
-      />
+      /> */}
+      {/* <p>Please click view my projects to see your projects</p> */}
     </>
   );
 }

@@ -25,6 +25,9 @@ const ProfilesSchema = new Schema({
   creatorDisplayName: {
     type: String,
   },
+  creatorDefaultUserName: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

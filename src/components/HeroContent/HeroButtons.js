@@ -11,7 +11,8 @@ export default function HeroButtons({
   cv,
   currentUser,
 }) {
-  const galleryPage = '/';
+  const defaultUserNameUrl = currentUser?.defaultUserName;
+  const galleryPage = `/${defaultUserNameUrl}`;
   // const detailsPage = '/assets/others/Emre-Mutlu-Cv-ReactDev.pdf';
   const View = 'View';
 

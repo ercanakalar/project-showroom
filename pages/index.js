@@ -67,22 +67,6 @@ export async function getServerSideProps({ req, res }) {
   const profile = await Profiles.findOne({ creatorId: verified?.id });
   const projects = await Projects.find({ creatorId: verified?.id });
 
-  const username = profile?.username;
-
-  if (profile) {
-    if (username)
-      return {
-        redirect: {
-          destination: `/${username}`,
-        },
-      };
-    return {
-      redirect: {
-        destination: `/`,
-      },
-    };
-  }
-
   const currentUserStr = currentUser ? JSON.stringify(currentUser) : null;
   const currentProfileStr = profile ? JSON.stringify(profile) : null;
   const projectsStr = projects ? JSON.stringify(projects) : null;

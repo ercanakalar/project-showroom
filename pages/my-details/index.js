@@ -73,6 +73,7 @@ export async function getServerSideProps({ req, res }) {
         giveNameToButton: currentProfile?.giveNameToButton || null,
         title: currentProfile?.title || null,
         addOneUrl: currentProfile?.addOneUrl || null,
+        creatorDefaultUserName: currentUser.defaultUserName,
       },
     };
   } catch (err) {

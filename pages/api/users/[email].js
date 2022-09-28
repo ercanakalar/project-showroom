@@ -16,11 +16,12 @@ export default async function handler(req, res) {
     method,
   } = req;
   await connect();
+  console.log(email, 'email');
 
   switch (method) {
     case 'GET':
       try {
-        const userItem = await Users.findOne({ email });
+        const userItem = await Users.findOne({ defaultUserName: email });
 
         if (!userItem) {
           return res.status(400).json({

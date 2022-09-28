@@ -11,23 +11,12 @@ export default async function (req, res, next) {
       return res.redirect(process.env.NEXT_PUBLIC_URL + '/');
     }
 
-    // const takeProfile = async () => {
-    //   const currentProfile = await Profiles.findOne({ googleId: info.token });
-    //   console.log(currentProfile, 'currentProfile');
-    //   const currentProfileUsername = currentProfile?.username;
-    //   return currentProfileUsername;
-    // };
-
-    // set cookie and send redirect
     setCookie('token', info.token, {
       req,
       res,
     });
-    // const takeUsername = takeProfile();
-    // if (takeUsername) {
-    //   res.redirect(process.env.NEXT_PUBLIC_URL + `/${takeUsername}`);
-    // }
-    const currentUserUrl = user.email.split('@')[0];
-    res.redirect(process.env.NEXT_PUBLIC_URL + `/${currentUserUrl}`);
+
+    // const currentUserUrl = user.defaultUserName;
+    res.redirect(process.env.NEXT_PUBLIC_URL + `/`);
   })(req, res, next);
 }

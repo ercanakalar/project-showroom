@@ -45,7 +45,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     const cookieExists = getCookie('token', { req, res });
 
-    if (cookieExists) return { redirect: { destination: '/ercanakalar' } };
+    if (cookieExists) return { redirect: { destination: '/' } };
     return { props: {} };
   } catch (err) {
     return { props: {} };

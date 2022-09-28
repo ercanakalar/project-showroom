@@ -49,6 +49,7 @@ export default function MyDetailsForm({ props }) {
     creatorDisplayName,
     creatorEmail,
     creatorId,
+    creatorDefaultUserName,
   } = props;
 
   const onSubmit = async (formData) => {
@@ -57,6 +58,7 @@ export default function MyDetailsForm({ props }) {
       creatorDisplayName,
       creatorEmail,
       creatorId,
+      creatorDefaultUserName,
     };
     if (formData) {
       const response = await fetch('/api/profiles', {

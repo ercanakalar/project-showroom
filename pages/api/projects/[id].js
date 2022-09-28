@@ -51,7 +51,9 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET' /* Get a model by its ID */:
       try {
-        const galleryItem = await Projects.find({ creatorId: id });
+        const galleryItem = await Projects.find({
+          $or: [{ creatorId: id }, { creatorDefaultUserName: id }],
+        });
 
         if (!galleryItem) {
           return res.status(400).json({

@@ -17,7 +17,21 @@ export default function Login() {
     const profile = await findProfile.json();
 
     const profileData = profile.data;
-    setSearchProfile(profileData);
+    console.log(profileData, 'profileData');
+    if (!profileData) {
+      const findUser = await fetch(`/api/users/${username}`);
+      const user = await findUser.json();
+      const userData = user.data;
+      console.log(userData, 'userData');
+      setSearchUser(userData);
+
+      const findProject = await fetch(`/api/projects/${username}`);
+      const project = await findProject.json();
+      const projectData = project.data;
+      setSearchProjects(projectData);
+
+      setSearchProfile(profileData || userData);
+    }
 
     if (profileData) {
       const findProject = await fetch(`/api/projects/${profileData.creatorId}`);

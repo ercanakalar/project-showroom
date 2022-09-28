@@ -57,7 +57,7 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const projectList = await Projects.find({});
+        const projectList = await Projects.find();
         res.status(200).json({
           success: true,
           data: projectList,

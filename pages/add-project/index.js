@@ -65,6 +65,7 @@ export async function getServerSideProps({ req, res }) {
         creatorId: verified.id,
         creatorEmail: obj.email,
         creatorDisplayName: obj.displayName,
+        creatorDefaultUserName: obj.defaultUserName,
       },
     };
   } catch (err) {
