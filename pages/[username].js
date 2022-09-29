@@ -15,14 +15,12 @@ export default function Login() {
     if (!username) return null;
     const findProfile = await fetch(`/api/profiles/${username}`);
     const profile = await findProfile.json();
-
     const profileData = profile.data;
-    console.log(profileData, 'profileData');
-    if (!profileData) {
+
+    if (profile.success === false) {
       const findUser = await fetch(`/api/users/${username}`);
       const user = await findUser.json();
       const userData = user.data;
-      console.log(userData, 'userData');
       setSearchUser(userData);
 
       const findProject = await fetch(`/api/projects/${username}`);
@@ -33,7 +31,9 @@ export default function Login() {
       setSearchProfile(profileData || userData);
     }
 
-    if (profileData) {
+    if (profile.success === true) {
+      setSearchProfile(profileData);
+
       const findProject = await fetch(`/api/projects/${profileData.creatorId}`);
       const project = await findProject.json();
       const projectData = project.data;

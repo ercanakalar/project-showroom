@@ -10,8 +10,12 @@ export default async function (req, res, next) {
     if (err || !user) {
       return res.redirect(process.env.NEXT_PUBLIC_URL + '/');
     }
-
     setCookie('token', info.token, {
+      req,
+      res,
+    });
+
+    setCookie('userGoogleId', user.googleId, {
       req,
       res,
     });

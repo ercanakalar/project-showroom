@@ -39,7 +39,7 @@ export default function AppBarTitle({ currentUserStr, currentProfileStr }) {
   const currentProfile = JSON.parse(currentProfileStr);
 
   const currentUsername =
-    currentProfile?.username || currentUser.defaultUserName || '';
+    currentUser.defaultUserName || currentProfile?.username || '';
 
   return (
     <Typography variant="h6" color="inherit" noWrap className={classes.title}>

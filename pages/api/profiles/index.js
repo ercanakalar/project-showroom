@@ -4,11 +4,12 @@ import Profiles from '../../../models/Profiles';
 /* MESSAGES */
 import {
   // PROVIDE_PW,
-  GALLERY_LISTED,
-  GALLERY_LISTED_ERROR,
-  PROJECT_ADDED,
-  PROJECT_ADDED_ERROR,
-} from '../../../lib/api/projects/messages';
+  PROFILE_LISTED,
+  PROFILE_LISTED_ERROR,
+  PROFILE_UPDATED,
+  PROFILE_UPDATED_ERROR,
+  USER_CREATED,
+} from '../../../lib/api/profiles/messages';
 import { WRONG_METHOD } from '../../../lib/general/messages';
 
 import { getCookie } from 'cookies-next';
@@ -17,18 +18,18 @@ import connect from '../../../lib/database';
 
 /* MAIN FUNCTION */
 export default async function handler(req, res) {
-  const { method } = req;
-  let { body } = req;
   await connect();
 
+  const { method } = req;
+  let { body } = req;
+
   const token = getCookie('token', { req, res });
-
   const verified = jwt.decode(token);
-
   const userId = verified?.id;
 
   if (method === 'POST') {
     const bodyArr = [body];
+
     const filteredBody = bodyArr.map(
       ({
         username,
@@ -60,13 +61,13 @@ export default async function handler(req, res) {
         res.status(200).json({
           success: true,
           data: projectList,
-          message: GALLERY_LISTED,
+          message: PROFILE_LISTED,
           loading: false,
         });
       } catch (error) {
         res.status(400).json({
           success: false,
-          message: GALLERY_LISTED_ERROR,
+          message: PROFILE_LISTED_ERROR,
           error,
           loading: false,
         });
@@ -84,7 +85,7 @@ export default async function handler(req, res) {
           res.status(201).json({
             success: true,
             data: profile,
-            message: PROJECT_ADDED,
+            message: USER_CREATED,
             loading: false,
           });
         }
@@ -95,13 +96,13 @@ export default async function handler(req, res) {
         res.status(201).json({
           success: true,
           data: updatedProfile,
-          message: PROJECT_ADDED,
+          message: PROFILE_UPDATED,
           loading: false,
         });
       } catch (error) {
         res.status(400).json({
           success: false,
-          message: PROJECT_ADDED_ERROR,
+          message: PROFILE_UPDATED_ERROR,
           error,
           loading: false,
         });

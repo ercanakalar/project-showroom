@@ -68,10 +68,11 @@ export default function MyDetailsForm({ props }) {
         },
         body: JSON.stringify(projectValues),
       });
-      if (response.status === 201) {
-        notifySuccess(response.statusText || 'Profile updated!');
+      const notifyProfile = await response.json();
+      if (notifyProfile.success === true) {
+        notifySuccess(notifyProfile.message || 'Profile updated!');
       } else {
-        notifyError(response.statusText || 'Profile could not updated!');
+        notifyError(notifyProfile.message || 'Profile could not updated!');
       }
     }
   };
@@ -87,7 +88,7 @@ export default function MyDetailsForm({ props }) {
         label="User Name"
         inputProps={{ 'aria-label': 'User Name' }}
         defaultValue={username ? username : props.creatorDisplayName}
-        required
+        disabled
       />
       <div className={classes.margin} />
       <FormTextarea

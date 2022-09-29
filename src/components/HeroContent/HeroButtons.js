@@ -5,13 +5,21 @@ import LinkNext from 'next/link';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
+import { getCookie } from 'cookies-next';
+import jwt from 'jsonwebtoken';
+
 export default function HeroButtons({
   firstButtonText = 'My projects',
   secondButtonText,
   cv,
   currentUser,
 }) {
-  const defaultUserNameUrl = currentUser?.defaultUserName;
+  const userGoogleId = getCookie('userGoogleId') || null;
+  console.log(userGoogleId, 'userId');
+  console.log(currentUser.googleId, 'currentUser.googleId');
+
+  const defaultUserNameUrl =
+    userGoogleId === currentUser.googleId ? currentUser?.defaultUserName : '';
   const galleryPage = `/${defaultUserNameUrl}`;
   // const detailsPage = '/assets/others/Emre-Mutlu-Cv-ReactDev.pdf';
   const View = 'View';

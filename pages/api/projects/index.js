@@ -14,10 +14,10 @@ import connect from '../../../lib/database';
 
 /* MAIN FUNCTION */
 export default async function handler(req, res) {
+  await connect();
+
   const { method } = req;
   let { body } = req;
-
-  await connect();
 
   if (method === 'POST') {
     if (!body.projectTitle || !body.thumbnailUrl) {

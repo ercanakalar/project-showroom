@@ -20,12 +20,14 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const findWithUsername = await Profiles.findOne({ username });
+        const findWithUsername = await Profiles.findOne({
+          creatorDefaultUserName: username,
+        });
 
         if (!findWithUsername) {
           return res.status(400).json({
             success: false,
-            message: USER_LISTED,
+            message: USER_LISTED_ERROR,
             loading: false,
           });
         }
