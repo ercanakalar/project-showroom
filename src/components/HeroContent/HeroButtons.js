@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 import { getCookie } from 'cookies-next';
-import jwt from 'jsonwebtoken';
 
 export default function HeroButtons({
   firstButtonText = 'My projects',
@@ -15,8 +14,6 @@ export default function HeroButtons({
   currentUser,
 }) {
   const userGoogleId = getCookie('userGoogleId') || null;
-  console.log(userGoogleId, 'userId');
-  console.log(currentUser.googleId, 'currentUser.googleId');
 
   const defaultUserNameUrl =
     userGoogleId === currentUser.googleId ? currentUser?.defaultUserName : '';
