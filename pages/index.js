@@ -7,6 +7,9 @@ import Users from '../models/Users';
 import Profiles from '../models/Profiles';
 import Projects from '../models/Projects';
 import connect from '../lib/database';
+import { LinkNext } from 'next/link';
+import { Link } from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   pleaseLogIn: {
