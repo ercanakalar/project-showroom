@@ -29,6 +29,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
+
 export default function IndexPage(props) {
   const classes = useStyles();
   const { currentProfileStr, currentUserStr, projectsStr } = props;
@@ -36,10 +38,7 @@ export default function IndexPage(props) {
   if (!currentUserStr) {
     return (
       <div className={classes.pleaseLogIn}>
-        <LinkNext
-          href="https://project-showroom-two.vercel.app/ercan-akalar9137"
-          passHref
-        >
+        <LinkNext href={PUBLIC_URL + '/ercan-akalar9137'} passHref>
           <Link className={classes.pleaseLogInLink}>
             EXAMPLE PROJECT GALLERY | Ercan AKALAR
           </Link>
