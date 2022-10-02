@@ -8,11 +8,30 @@ import Profiles from '../models/Profiles';
 import Projects from '../models/Projects';
 import connect from '../lib/database';
 
+const useStyles = makeStyles(() => ({
+  pleaseLogIn: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+}));
+
 export default function IndexPage(props) {
+  const classes = useStyles();
   const { currentProfileStr, currentUserStr, projectsStr } = props;
 
   if (!currentUserStr) {
-    return <div>Please log in!</div>;
+    return (
+      <div className={classes.pleaseLogIn}>
+        <LinkNext
+          href="https://project-showroom-two.vercel.app/ercan-akalar9137"
+          passHref
+        >
+          <Link>EXAMPLE PROJECT GALLERY | Ercan AKALAR</Link>
+        </LinkNext>
+      </div>
+    );
   }
 
   return (
