@@ -17,7 +17,7 @@ export default function Login() {
     const profile = await findProfile.json();
     const profileData = profile.data;
 
-    if (profile.success === false) {
+    if (!profile.success) {
       const findUser = await fetch(`/api/users/${username}`);
       const user = await findUser.json();
       const userData = user.data;
@@ -31,7 +31,7 @@ export default function Login() {
       setSearchProfile(profileData || userData);
     }
 
-    if (profile.success === true) {
+    if (profile.success) {
       setSearchProfile(profileData);
 
       const findProject = await fetch(`/api/projects/${profileData.creatorId}`);
@@ -49,6 +49,9 @@ export default function Login() {
   useEffect(() => {
     getResults();
   }, [username]);
+
+  if (JSON.stringify(searchProfile) === '[]')
+    return <div>Loading... {username} </div>;
 
   return (
     <>

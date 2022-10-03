@@ -7,12 +7,44 @@ import Users from '../models/Users';
 import Profiles from '../models/Profiles';
 import Projects from '../models/Projects';
 import connect from '../lib/database';
+import LinkNext from 'next/link';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+  pleaseLogIn: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '20vh',
+  },
+  pleaseLogInLink: {
+    color: 'white',
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    letterSpacing: '0.2rem',
+    backgroundColor: 'black',
+    padding: '1rem',
+  },
+}));
+
+const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 export default function IndexPage(props) {
+  const classes = useStyles();
   const { currentProfileStr, currentUserStr, projectsStr } = props;
 
   if (!currentUserStr) {
-    return <div>Please log in!</div>;
+    return (
+      <div className={classes.pleaseLogIn}>
+        <LinkNext href={PUBLIC_URL + '/ercan-akalar9137'} passHref>
+          <Link className={classes.pleaseLogInLink}>
+            EXAMPLE PROJECT GALLERY | Ercan AKALAR
+          </Link>
+        </LinkNext>
+      </div>
+    );
   }
 
   return (
