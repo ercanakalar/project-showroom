@@ -16,7 +16,7 @@ import { AllIcons } from '../GetIcons';
 import { notifySuccess } from '../toasts/notifySuccess';
 import { notifyError } from '../toasts/notifyError';
 
-import { getCookie, setCookie } from 'cookies-next';
+import { deleteCookie, getCookie } from 'cookies-next';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -68,7 +68,7 @@ export default function EditProject({ props }) {
     } else {
       notifyError('Something went wrong');
     }
-    setCookie('cardIdToken');
+    deleteCookie('cardIdToken');
   };
 
   return (

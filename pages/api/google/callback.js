@@ -3,6 +3,7 @@ import passport from 'passport';
 import connect from '../../../lib/database';
 import '../../../lib/passport';
 // import Profiles from '../../../models/Profiles';
+import createToken from '../../../utils/createToken';
 
 export default async function (req, res, next) {
   await connect();
@@ -15,7 +16,8 @@ export default async function (req, res, next) {
       res,
     });
 
-    setCookie('userGoogleId', user.googleId, {
+    const userGoogleIdToken = createToken(user.googleId);
+    setCookie('userGoogleId', userGoogleIdToken, {
       req,
       res,
     });
