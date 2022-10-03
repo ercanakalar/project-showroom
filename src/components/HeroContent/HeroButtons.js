@@ -26,30 +26,32 @@ export default function HeroButtons({
 
   return (
     <>
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item>
-          <LinkNext href={galleryPage} passHref>
-            <Button variant="contained" color="primary">
-              View {firstButtonText}
-            </Button>
-          </LinkNext>
-        </Grid>
-        {cv && (
+      {currentUser && (
+        <Grid container spacing={2} justifyContent="center">
           <Grid item>
-            <LinkNext href={cv} passHref>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                style={{ textDecoration: 'none' }}
-              >
-                <Button variant="outlined">
-                  {secondButtonText ? secondButtonText : View}
-                </Button>
-              </a>
+            <LinkNext href={galleryPage} passHref>
+              <Button variant="contained" color="primary">
+                View {firstButtonText}
+              </Button>
             </LinkNext>
           </Grid>
-        )}
-      </Grid>
+          {cv && (
+            <Grid item>
+              <LinkNext href={cv} passHref>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="outlined">
+                    {secondButtonText ? secondButtonText : View}
+                  </Button>
+                </a>
+              </LinkNext>
+            </Grid>
+          )}
+        </Grid>
+      )}
     </>
   );
 }
