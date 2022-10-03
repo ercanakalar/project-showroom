@@ -13,6 +13,7 @@ export default function LoginRegisterButton() {
 
   const logout = () => {
     deleteCookie('token');
+    deleteCookie('userGoogleId');
     router.push('/');
   };
 
