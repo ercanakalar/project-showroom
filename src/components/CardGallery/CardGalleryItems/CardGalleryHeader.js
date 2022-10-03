@@ -1,23 +1,16 @@
 /* REACT */
 import { useState } from 'react';
-import Link from 'next/link';
 
 /* MATERIAL UI */
 // COMPONENTS
-import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import CardHeader from '@material-ui/core/CardHeader';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ICONS
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
+import jwt from 'jsonwebtoken';
+import CardGalleryAction from './CardGalleryAction';
 
 const useStyles = makeStyles(() => ({
   listIcon: {
@@ -64,49 +57,30 @@ export default function CardGalleryHeader({ card }) {
     setCookie('cardIdToken', card._id);
   };
 
+  const existUserCookie = getCookie('token');
+  const existUserToken = jwt.decode(existUserCookie);
+  const userId = existUserToken?.id;
+
+  const action = () => {
+    if (userId === card.creatorId) {
+      return (
+        <CardGalleryAction
+          handleClick={handleClick}
+          handleClose={handleClose}
+          classes={classes}
+          handleEdit={handleEdit}
+          anchorEl={anchorEl}
+          handleDelete={handleDelete}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <CardHeader
       avatar={<Avatar aria-label="recipe">{firstLatter}</Avatar>}
-      action={
-        <>
-          <IconButton
-            aria-label="settings"
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>
-              <li>
-                <Link href="/">
-                  <a onClick={handleDelete} className={classes.link}>
-                    <ListItemIcon className={classes.listIcon}>
-                      <DeleteIcon fontSize="small" className={classes.icon} />
-                      <ListItemText primary="Delete" className={classes.text} />
-                    </ListItemIcon>
-                  </a>
-                </Link>
-                <Link href="/edit-project">
-                  <a onClick={handleEdit} className={classes.link}>
-                    <ListItemIcon className={classes.listIcon}>
-                      <EditIcon fontSize="small" className={classes.icon} />
-                      <ListItemText primary="Edit" className={classes.text} />
-                    </ListItemIcon>
-                  </a>
-                </Link>
-              </li>
-            </MenuItem>
-          </Menu>
-        </>
-      }
+      action={action()}
       title={card.creatorName}
       subheader={
         <>
