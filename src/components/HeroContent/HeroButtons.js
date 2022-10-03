@@ -28,13 +28,23 @@ export default function HeroButtons({
     <>
       {currentUser && (
         <Grid container spacing={2} justifyContent="center">
-          <Grid item>
-            <LinkNext href={galleryPage} passHref>
-              <Button variant="contained" color="primary">
-                View {firstButtonText}
-              </Button>
-            </LinkNext>
-          </Grid>
+          {defaultUserNameUrl ? (
+            <Grid item>
+              <LinkNext href={galleryPage} passHref>
+                <Button variant="contained" color="primary">
+                  View {firstButtonText}
+                </Button>
+              </LinkNext>
+            </Grid>
+          ) : (
+            <Grid item>
+              <LinkNext href={galleryPage} passHref>
+                <Button variant="contained" color="primary">
+                  Go Main Page
+                </Button>
+              </LinkNext>
+            </Grid>
+          )}
           {cv && (
             <Grid item>
               <LinkNext href={cv} passHref>
